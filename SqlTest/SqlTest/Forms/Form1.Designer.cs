@@ -31,7 +31,6 @@
             this.loginField = new System.Windows.Forms.TextBox();
             this.passField = new System.Windows.Forms.TextBox();
             this.buttonAuth = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // loginField
@@ -61,22 +60,11 @@
             this.buttonAuth.UseVisualStyleBackColor = true;
             this.buttonAuth.Click += new System.EventHandler(this.buttonAuth_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(193, 258);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(340, 293);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonAuth);
             this.Controls.Add(this.passField);
             this.Controls.Add(this.loginField);
@@ -92,7 +80,6 @@
         private System.Windows.Forms.TextBox loginField;
         private System.Windows.Forms.TextBox passField;
         private System.Windows.Forms.Button buttonAuth;
-        private System.Windows.Forms.Button button1;
     }
 }
 

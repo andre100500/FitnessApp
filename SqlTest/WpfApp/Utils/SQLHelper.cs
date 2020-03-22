@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using SqlTest.Data;
 
-namespace SqlTest
+namespace WpfApp
 {
     public class SQLHelper
     {
@@ -106,18 +106,37 @@ namespace SqlTest
 
             return i;
         }
+
+        public static void Regestration(User user)
+        {
+            string requestRegestration = "INSERT INTO Users (Login,Pass,Gender) VALUE (@login,@pass,@gender)";
+            MySqlConnection connection = GetDBConnection();
+            connection.Open();
+            MySqlCommand command = new MySqlCommand(requestRegestration, connection);
+            command.Parameters.AddWithValue("@login", user.Login);
+            command.Parameters.AddWithValue("@pass", user.Pass);
+            command.Parameters.AddWithValue("@gender", user.Gender);
+            
+            int i = command.ExecuteNonQuery();
+            connection.Close();
+
+            if(i<0)
+            {
+                throw new Exception("No table to new User");
+            }
+        }
        
         public static User Login(string login,string pass)
         {
             User user = new User();
 
-            string requestUsers = "SELECT * FROM users WHERE login=@login AND pass=@pass;";
+            string requestUsers = "SELECT * FROM Users WHERE login=@login AND pass=@pass";
 
             MySqlConnection connection = GetDBConnection();
             connection.Open();
             MySqlCommand command = new MySqlCommand(requestUsers, connection);
-            command.Parameters.AddWithValue("@login", user.Login);
-            command.Parameters.AddWithValue("@pass", user.Pass);
+            command.Parameters.AddWithValue("@login", login);
+            command.Parameters.AddWithValue("@pass", pass);
             MySqlDataReader reader = command.ExecuteReader();
 
             if (reader.HasRows)

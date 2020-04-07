@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SqlTest.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace WpfApp.MVVM.ViewModels
     {
         private string errorMessage;
 
+        public User CurentUser { get; set; }
         public string LoginString { get; set; }
         public string PasswordString { get; set; }
         public ICommand LoginCommand { set; get; }
@@ -52,7 +54,7 @@ namespace WpfApp.MVVM.ViewModels
                 Validation.Login(LoginString);
                 Validation.Pass(PasswordString);
                 Console.Write(SQLHelper.GetAllUsers().Count);
-                SettingsProvider.Instance.CurentUser = SQLHelper.Login(LoginString, PasswordString);
+                SettingsProvider.Instance.CurentUser = SQLHelper.Login(CurentUser);
 
             }
             catch (Exception ex)

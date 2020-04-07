@@ -14,5 +14,8 @@
         <DataTemplate DataType="{x:Type vm:RegestrationViewModel}">
             <views:RegestrationView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+            <views:HomeView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

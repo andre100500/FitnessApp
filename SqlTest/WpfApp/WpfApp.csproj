@@ -92,6 +92,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVVM\Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,9 +112,13 @@
   <ItemGroup>
     <Compile Include="MVVM\Converter\GenderConverter.cs" />
     <Compile Include="MVVM\Models\SimpleCommand.cs" />
+    <Compile Include="MVVM\ViewModels\HomeViewModel.cs" />
     <Compile Include="MVVM\ViewModels\IPageViewModel.cs" />
     <Compile Include="MVVM\ViewModels\RegestrationViewModel.cs" />
     <Compile Include="MVVM\ViewModels\StartViewModel.cs" />
+    <Compile Include="MVVM\Views\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\Views\RegestrationView.xaml.cs">
       <DependentUpon>RegestrationView.xaml</DependentUpon>
     </Compile>

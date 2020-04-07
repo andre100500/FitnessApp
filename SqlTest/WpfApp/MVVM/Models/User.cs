@@ -13,8 +13,9 @@ namespace SqlTest.Data
         public string Login { get; set; }
         public string Pass { get; set; }
         public string Name { set; get; }
+        public string Email { get; set; }
         public int Age { set; get; }
-        public DateTime BirthDate { get; }
+        public DateTime Date { get; set; }
         public Sex Gender { set; get; }
         public double Mass { get; set; }
         public double Height { get; set; }

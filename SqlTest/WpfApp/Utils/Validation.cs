@@ -10,42 +10,116 @@ namespace WpfApp
 {
    public static  class Validation
     {
-        private static int LoginReqLengs = 2;
-        private static int PassReqLengs = 4;
+        private static int MIN_LOGIN = 2;
+        private static int MAX_LOGIN = 10;
+        private static int MIN_PASS = 4;
+        private static int MAX_PASS = 8;
 
+        private static int MIN_AGE = 16;
+        private static int MAX_AGE = 70;
+        /// <summary>
+        /// Проверка Возроста
+        /// </summary>
+        /// <param name="age"></param>
+        public static void Age(int age)
+        {
+            if(age<=MIN_AGE)
+            {
+                throw new Exception($"Age connot be less {MIN_AGE} age!");
+            }
+            else if(age>=MAX_AGE)
+            {
+                throw new Exception($"Age connot be less {MAX_AGE} age!");
+            }
+        }
+      
+        private const double MIN_MASS = 30;
+        private const double MAX_MASS = 200;
+        /// <summary>
+        /// Проверка массы
+        /// </summary>
+        /// <param name="mass"></param>
+        public static void Mass(double mass)
+        {
+            
+            if(mass<= MIN_MASS)
+            {
+                throw new Exception($"Mass cannot be less {MIN_MASS} kg!");
+            }
+            else if(mass >= MAX_MASS)
+            {
+                throw new Exception($"Mass cannot to be much {MAX_MASS} kg!");
+            }
+        }
+
+        private const double MIN_Height = 120;
+        private const double MAX_Height = 250;
+        /// <summary>
+        /// Проверка высоты
+        /// </summary>
+        /// <param name="height">Высота</param>
+        public static void Height(double height)
+        {
+            if(height<=MIN_Height)
+            {
+                   throw new Exception($"Height cannot to be less {MIN_Height} metrs! ");
+            }
+            else if(height >= MAX_Height)
+            {
+                throw new Exception($"Height cannot  to be much {MAX_Height} metrs! ");
+            }
+        }
+
+        /// <summary>
+        /// Проверка логина
+        /// </summary>
+        /// <param name="str">Строка логина</param>
         public static void Login(string str)
         {
             if(string.IsNullOrEmpty(str))
             {
                 throw new Exception("Login is Empty ");
             }
-            if (str.Length < LoginReqLengs)
+            else if (str.Length <= MIN_LOGIN)
             {
-                throw new Exception($"Login length less then {LoginReqLengs} symbols.");
+                throw new Exception($"Login length less then {MIN_LOGIN} symbols.");
             }
-            if (!IsValidEmail(str))
+            else if (str.Length>=MAX_LOGIN)
             {
+                throw new Exception($"Login length connot to be much {MAX_LOGIN}");
+            }
 
-            }
         }
         
+        /// <summary>
+        /// Проверка пароля
+        /// </summary>
+        /// <param name="str">Строка пароля</param>
         public static void Pass(string str)
         {
             if(string.IsNullOrEmpty(str))
             {
                 throw new Exception("Pass is Empty");
             }
-            if(str.Length<PassReqLengs)
+            else if(str.Length<MIN_PASS)
             {
-                throw new Exception($"Pass length less then {PassReqLengs} symbols.");
+                throw new Exception($"Pass length less then {MIN_PASS} symbols.");
+            }
+            else if(str.Length>=MAX_PASS)
+            {
+                throw new Exception($"Pass length cannot to be much{MAX_PASS} symbols.");
             }
 
         }
-
+        /// <summary>
+        /// Проверка почты
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public static bool IsValidEmail(string str)
         {
             if (string.IsNullOrWhiteSpace(str))
-                throw new Exception("GG");
+                throw new Exception("Email is Empty");
 
             try
             {

@@ -13,19 +13,19 @@ namespace WpfApp.MVVM.ViewModels
 {
     public class RegestrationViewModel : ViewModel , IPageViewModel
     {
-        private string errorMessage;
+        private string _errorMessage;
 
-        public User curentUser { set; get; }
-        public String Gender { set; get; } = "Male";
+        public User CurentUser { set; get; } 
+        public String Age { set; get; }
+        public String Gender { set; get; } = "Male"; 
         public ICommand RegestrationCommand { get; set; }
 
         public string ErrorMessage
         {
-            get { return errorMessage; }
+            get { return _errorMessage; }
             set
             {
-                errorMessage = value;
-
+                _errorMessage = value; 
                 Notify("ErrorMessage");
 
             }
@@ -33,7 +33,7 @@ namespace WpfApp.MVVM.ViewModels
         public RegestrationViewModel()
         {
             RegestrationCommand = new SimpleCommand(Regestration);
-            curentUser = new User();
+            CurentUser = new User(); 
         }
 
         private void Regestration()
@@ -41,10 +41,10 @@ namespace WpfApp.MVVM.ViewModels
             switch (Gender)
             {
                 case "Male":
-                    curentUser.Gender = Sex.Male;
+                    CurentUser.Gender = Sex.Male;
                     break;
                 case "Female":
-                    curentUser.Gender = Sex.Female;
+                    CurentUser.Gender = Sex.Female;
                     break;
             }
 
@@ -52,10 +52,12 @@ namespace WpfApp.MVVM.ViewModels
             try
             {
                 ErrorMessage = "";
-                Validation.Login(curentUser.Login);
-                Validation.Pass(curentUser.Pass);
-                SQLHelper.Regestration(curentUser);
-                SQLHelper.Login(curentUser.Login, curentUser.Pass);
+                Validation.IsValidEmail(CurentUser.Email);
+                Validation.Login(CurentUser.Login);
+                Validation.Pass(CurentUser.Pass);
+                Validation.Age(CurentUser.Age);
+                SQLHelper.Regestration(CurentUser);
+                SQLHelper.Login(CurentUser);
             }
             catch (Exception ex)
             {

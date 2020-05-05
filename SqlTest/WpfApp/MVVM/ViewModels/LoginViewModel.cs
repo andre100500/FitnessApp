@@ -15,8 +15,6 @@ namespace WpfApp.MVVM.ViewModels
         private string errorMessage;
 
         public User CurentUser { get; set; }
-        public string LoginString { get; set; }
-        public string PasswordString { get; set; }
         public ICommand LoginCommand { set; get; }
         public ICommand RegistrationCommand { set; get; }
 
@@ -36,6 +34,7 @@ namespace WpfApp.MVVM.ViewModels
         {
             LoginCommand = new SimpleCommand(LogIn);
             RegistrationCommand = new SimpleCommand(Registration);
+            CurentUser = new User();
         }
 
         /// <summary>
@@ -51,16 +50,17 @@ namespace WpfApp.MVVM.ViewModels
             try
             {
                 ErrorMessage = "";
-                Validation.Login(LoginString);
-                Validation.Pass(PasswordString);
-                Console.Write(SQLHelper.GetAllUsers().Count);
-                SettingsProvider.Instance.CurentUser = SQLHelper.Login(CurentUser);
+                SQLHelper.Login(CurentUser);
+                Validation.Login(CurentUser.Login);
+                Validation.Pass(CurentUser.Pass);
+                SettingsProvider.Instance.CurentUser = SQLHelper.Login(CurentUser); 
 
             }
             catch (Exception ex)
             {
                 ErrorMessage = ex.Message;
             }
+            StartViewModel.Instant.ChangeViewModel((IPageViewModel)new HomeViewModel());
         }
     }
 }

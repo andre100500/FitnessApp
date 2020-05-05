@@ -7,10 +7,13 @@
              xmlns:vm="clr-namespace:WpfApp.MVVM.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:HomeViewModel></vm:HomeViewModel>
+    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="29.351"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="88*"/>
             <RowDefinition Height="113*"/>
             <RowDefinition Height="108*"/>
@@ -24,12 +27,12 @@
             <ColumnDefinition Width="191*"/>
             <ColumnDefinition Width="298*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="Setiings" Grid.Column="4" Grid.Row="6" Command="{Binding SettingsCommand}" Cursor="None" FontFamily="Elephant" FontSize="20" FontStyle="Italic" Background="#FFF9F9F9" Foreground="#FF4F3535"/>
+        <Button Content="Settings" Grid.Column="4" Grid.Row="6" Command="{Binding SettingsCommand}" Cursor="None" FontFamily="Elephant" FontSize="20" FontStyle="Italic" Background="#FFF9F9F9" Foreground="#FF4F3535"/>
         <Button Content="Exercise"  Grid.Row="5"  Grid.Column="0" Command="{Binding ExerciseCommand}"/>
         <Button Content="Location"  Grid.Row="5" Grid.Column="1" Command="{Binding LocationCommand}" />
-        <Button Content="Progress"  Grid.Row="5" Grid.Column="2" Command="{Binding ProgressCommand}"/>
+        <Button Content="Progress"  Grid.Row="5" Grid.Column="2" Command="{Binding AdvancementCommand}"/>
         <Label Content="Welcom to Fitness Application" FontFamily="Edwardian Script ITC" FontSize="48" FontWeight="Bold" Grid.ColumnSpan="4" Grid.RowSpan="2"  />
-        <Label Content="Login:" Grid.Column="4" FontFamily="Leelawadee" FontSize="20" FontStyle="Italic" />
+        <TextBlock Grid.Column="4" TextWrapping="Wrap" Text="{Binding HeaderText}" />
 
     </Grid>
 </UserControl>

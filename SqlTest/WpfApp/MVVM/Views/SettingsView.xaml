@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="WpfApp.MVVM.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp.MVVM.Views"
+             xmlns:vm="clr-namespace:WpfApp.MVVM.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="400">
+    <UserControl.DataContext>
+        <vm:SettingsViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Grid.Column="1"  Grid.Row="1" TextWrapping="Wrap" Text="{Binding CurentUser.Pass}" Grid.ColumnSpan="2" Margin="0,0,1,0" />
+        <TextBlock  Grid.Row="1" TextWrapping="Wrap" Text="Password:" />
+        <TextBlock Grid.Row="2"  Text="Mass:" />
+        <TextBox  Grid.Column="1"  Grid.Row="2" TextWrapping="Wrap" Text="{Binding CurentUser.Mass}" Grid.ColumnSpan="2" Margin="0,0,1,0" />
+        <TextBox  Grid.Row="3" TextWrapping="Wrap" Text="{Binding CurentUser.Height}"  Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,1,0"/>
+        <TextBlock Grid.Row="3"  Text="Height:" />
+        <TextBlock Grid.Row="4" Text="Age:" />
+        <TextBox  Grid.Column="1" Grid.Row="4" TextWrapping="Wrap" Text="{Binding CurentUser.Age }" Grid.ColumnSpan="2" />
+        <Button Content="Save" Grid.Column="3" Grid.Row="4" Command="{Binding SettingsCommand}" />
+
+    </Grid>
+</UserControl>

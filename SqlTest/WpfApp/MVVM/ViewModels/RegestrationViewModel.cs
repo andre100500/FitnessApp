@@ -57,7 +57,7 @@ namespace WpfApp.MVVM.ViewModels
                 Validation.Pass(CurentUser.Pass);
                 Validation.Age(CurentUser.Age);
                 SQLHelper.Regestration(CurentUser);
-                SQLHelper.Login(CurentUser);
+                StartViewModel.Instant.ChangeViewModel((IPageViewModel)new LoginViewModel());
             }
             catch (Exception ex)
             {

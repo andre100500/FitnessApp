@@ -13,11 +13,16 @@ namespace WpfApp.MVVM.ViewModels
     {
         public string _errorMessage;
 
-        public User CurentUser { get; set; }
+        public User CurentUser { get { return SettingsProvider.Instance.CurentUser; }  } 
+        //#12 Login
+        public string HeaderText { get { return $"#{CurentUser.Id}  {CurentUser.Login}"; } }
+
         public ICommand SettingsCommand { get; set; }
         public ICommand ExerciseCommand { get; set; }
-        public ICommand PorgressCommand { get; set; }
+        public ICommand AdvancementCommand { get; set; }
         public ICommand LocationCommand { get; set; }
+
+
 
         public string ErrorMessage
         {
@@ -30,32 +35,30 @@ namespace WpfApp.MVVM.ViewModels
             }
         }
 
+
+
         public HomeViewModel ()
         {
             SettingsCommand = new SimpleCommand(Settings);
-            StartViewModel.Instant.ChangeViewModel((IPageViewModel)new ExerciseViewModel());
-            StartViewModel.Instant.ChangeViewModel((IPageViewModel)new LocationViewModel());
-            StartViewModel.Instant.ChangeViewModel((IPageViewModel)new ProgressViewModel());
-
+            ExerciseCommand = new SimpleCommand(Exercise);
+            AdvancementCommand = new SimpleCommand(Advancement);
+            LocationCommand = new SimpleCommand(Location); 
         }
-
-
         private void Settings()
         {
-            try
-            {
-                ErrorMessage = "";
-                Validation.Pass(CurentUser.Pass);
-                Validation.IsValidEmail(CurentUser.Email);
-                Validation.Age(CurentUser.Age);
-                Validation.Mass(CurentUser.Mass);
-                Validation.Height(CurentUser.Height);
-                SQLHelper.Settings(CurentUser);
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = ex.Message;
-            }
+            StartViewModel.Instant.ChangeViewModel((IPageViewModel)new SettingsViewModel());
+        }
+        private void Exercise()
+        {
+            StartViewModel.Instant.ChangeViewModel((IPageViewModel)new ExerciseViewModel());
+        }
+        private void Location()
+        {
+            StartViewModel.Instant.ChangeViewModel((IPageViewModel)new LocationViewModel());
+        }
+        private void Advancement()
+        {
+            StartViewModel.Instant.ChangeViewModel((IPageViewModel)new ProgressViewModel());
         }
     }
 }

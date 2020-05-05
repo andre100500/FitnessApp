@@ -5,6 +5,7 @@
              xmlns:views ="clr-namespace:WpfApp.MVVM.Views"
              xmlns:vm ="clr-namespace:WpfApp.MVVM.ViewModels"
              xmlns:con ="clr-namespace:WpfApp.MVVM.Converter"
+             xmlns:maplocal="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <con:GenderConverter x:Key="genderConverterKey" />
@@ -17,5 +18,25 @@
         <DataTemplate DataType="{x:Type vm:HomeViewModel}">
             <views:HomeView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:LocationViewModel}">
+            <views:LocationView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ProgressViewModel}">
+            <views:ProgressView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ExerciseViewModel}">
+            <views:ExerciseView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+            <views:SettingsView/>
+        </DataTemplate>
+        <!--<ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.LightBlue.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>-->
     </Application.Resources>
 </Application>

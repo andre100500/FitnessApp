@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace WpfApp
-{
+{/// <summary>
+/// Валидация отвечает за проверку введеных даных пользователя
+/// </summary>
    public static  class Validation
     {
         private static int MIN_LOGIN = 2;
@@ -32,7 +35,39 @@ namespace WpfApp
                 throw new Exception($"Age connot be less {MAX_AGE} age!");
             }
         }
-      
+
+
+        public const string FILE_EXTENSION = ".json";
+        public static void FilePath(string path)
+        {
+            if(string.IsNullOrEmpty(path))
+            {
+                throw new Exception("Fille is Epmty ");
+            } 
+            if(Path.GetExtension(path) != FILE_EXTENSION)
+            {
+                throw new Exception("Fille is wrong format.");
+            }
+        }
+
+        //private static int MIN_LENGTH = 4;
+        //private static int MAX_LENGTH = 16;
+        //public static void SaveNameFile(string name)
+        //{
+        //    if(string.IsNullOrWhiteSpace(name))
+        //    {
+        //        throw new Exception("Name file is empty");
+        //    }
+        //    else if (name.Length<=MIN_LENGTH)
+        //    {
+        //        throw new Exception($"Minimum lenght {MIN_LENGTH}");
+        //    }
+        //    else if (name.Length>= MAX_LENGTH)
+        //    {
+        //        throw new Exception($"Maximum leght {MAX_LENGTH}");
+        //    }
+        //}
+
         private const double MIN_MASS = 30;
         private const double MAX_MASS = 200;
         /// <summary>

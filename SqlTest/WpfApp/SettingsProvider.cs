@@ -27,7 +27,7 @@ namespace WpfApp
             }
         }
 
-        public User CurentUser;
+        public User CurentUser { get; set; }
 
 
         public static void LoadSettings()
@@ -41,7 +41,7 @@ namespace WpfApp
         {
             return JsonConvert.SerializeObject(this);
         }
-        public void SaveSettings()
+        public  void SaveSettings()
         { 
             
             if(!File.Exists("settings.json"))

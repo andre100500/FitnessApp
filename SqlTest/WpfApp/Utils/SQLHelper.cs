@@ -55,27 +55,31 @@ namespace WpfApp
             connection.Close();
             return userList;
         }
-
-        public static void UpdateUser(User user)
+        //TODO сделать правильный запрос
+        public static void SaveSettings(User user)
         {
-
-            string requestUsers = "UPDATE Users SET Pass=@pass, Login=@login, WHERE id = @Uid";
+            string requestUsers = "UPDATE Users SET  Pass=@pass, Age=@age, Mass=@mass, Height=@height WHERE Id=@id";
 
             MySqlConnection connection = GetDBConnection();
             connection.Open();
             MySqlCommand command = new MySqlCommand(requestUsers, connection);
-            command.Parameters.AddWithValue("@pass", user.Pass);
-            command.Parameters.AddWithValue("@login", user.Login);
-            command.Parameters.AddWithValue("@Uid", user.Id);
-            int response = command.ExecuteNonQuery();
-            connection.Close();
+            command.Parameters.AddWithValue("@pass",user.Pass);
+           // command.Parameters.AddWithValue("@email", user.Email);
+            command.Parameters.AddWithValue("@age",user.Age);
+            command.Parameters.AddWithValue("@mass", user.Mass);
+            command.Parameters.AddWithValue("@height", user.Height);
+            command.Parameters.AddWithValue("@id", user.Id);
 
-            if(response < 0)
+
+            int response = command.ExecuteNonQuery();    
+            
+
+            if(response<0)
             {
-                throw new Exception($"Error update User: User ID={user.Id}.");
+                throw new Exception($"Error Update User: User ID={user.Id}.");
             }
-
-        }
+            connection.Close();
+        }       
 
         public static int DeleteUser(User user)
         {
@@ -193,19 +197,19 @@ namespace WpfApp
                     { 
                         Id = int.Parse(reader.GetValue(0).ToString()),
                         Login = reader.GetValue(1).ToString(),
-                        //Pass = reader.GetValue(2).ToString()
+                        Pass = reader.GetValue(2).ToString()
                     };
                 }
             }
 
             reader.Close();
-            connection.Close();
+
 
             if (user.Id == 0)
             {
                 throw new Exception("No user found.");
             }
-
+            connection.Close();
             return user;
 
         }

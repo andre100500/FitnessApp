@@ -9,6 +9,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <con:GenderConverter x:Key="genderConverterKey" />
+        <con:StatusToColorConverter x:Key="colorConverterKey"/>
         <DataTemplate DataType="{x:Type vm:LoginViewModel}">
             <views:LoginView />
         </DataTemplate>

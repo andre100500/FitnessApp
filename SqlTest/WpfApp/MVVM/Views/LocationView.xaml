@@ -44,16 +44,16 @@
                                     <materialDesign:PackIcon Kind="Star" Foreground="#DDFF6F0B" Margin="1" VerticalAlignment="Center" Width="12" Height="12"/>
                                     <materialDesign:PackIcon Kind="StarHalf" Foreground="#DDFF6F0B" Margin="1" VerticalAlignment="Center" Width="12" Height="12"/>
                                 </StackPanel>
-                                <TextBlock Text="Open until 09:00PM" Opacity="0.7"/>
+                                <TextBlock Text="Open until 09:00 PM" Opacity="0.7"/>
                             </StackPanel>
-                            <Image HorizontalAlignment="Right" Width="50" Height="50" Source="Assets/mexican-food-1534948-1600x1200.jpg" Stretch="UniformToFill" />
+                            <Image HorizontalAlignment="Right" Width="50" Height="50"  Stretch="UniformToFill" />
                         </Grid>
                     </Border>
                 </ListViewItem>
             </ListView>
         </StackPanel>
 
-        <Button Grid.Column="1" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatButton}">
+        <Button Grid.Column="1" HorizontalAlignment="Right">
             <materialDesign:PackIcon Kind="Close"/>
         </Button>
 

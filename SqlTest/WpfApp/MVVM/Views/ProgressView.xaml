@@ -6,25 +6,49 @@
              xmlns:local="clr-namespace:WpfApp.MVVM.Views"
              xmlns:vm="clr-namespace:WpfApp.MVVM.ViewModels"
              xmlns:con="clr-namespace:WpfApp.MVVM.Converter"
-             xmlns:utils ="clr-namespace:WpfApp.Utils"
+             xmlns:models="clr-namespace:WpfApp.MVVM.Models"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:ProgressViewModel/>
+    </UserControl.DataContext>
     <Grid>
-        <StackPanel Margin="641,10,10,10" RenderTransformOrigin="1.12,0.462">
-            <TextBlock Text="{Binding StatusOk}" Foreground="{Binding StatusOk}">
-
-            </TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="147*"/>
+            <ColumnDefinition Width="53*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="53,10,10,10" RenderTransformOrigin="1.12,0.462" Grid.Column="1">
+            <ItemsControl ItemsSource="{Binding CurentUser.ExerciseList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Name}" Foreground="{Binding CurentProgress, Converter={StaticResource colorConverterKey}}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </StackPanel>
         <DataGrid Name="dataGrid"
-            ItemsSource="{Binding CurentUser.ExerciseList}"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding CurentUser.ExerciseList}"
                   HorizontalAlignment="Left" Height="197" 
                   Margin="42,10,0,0" VerticalAlignment="Top" Width="465">
-            <DataGrid.Columns> 
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Mass" Binding="{Binding Description}"/> 
+            <!--<DataGrid.RowStyle>
+                <Style TargetType="DataGridCell">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ExercisProgress}" Value="true">
+                            <Setter Property="Background" Value="{Binding ExercisProgress.Done}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>-->
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name"  Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn Header="Mass" Binding="{Binding Path=Description}"/>
+                <DataGridTextColumn Header="Count" Binding="{Binding Path=Count}"/>
+                <DataGridTextColumn Header="CounterType" Binding="{Binding Path=CounterType}"/>
+                <DataGridTextColumn Header="CurentProgress" Binding="{Binding Path=CurentProgress}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Loading File" Command="{Binding OpenFileCommand}" HorizontalAlignment="Left" Margin="42,231,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Save" Command="{Binding SaveToFileProgress}" HorizontalAlignment="Left" Margin="166,231,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Save File" Command="{Binding SaveToFileProgress}" HorizontalAlignment="Left" Margin="166,231,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </UserControl>

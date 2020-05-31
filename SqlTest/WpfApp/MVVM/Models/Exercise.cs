@@ -1,6 +1,6 @@
 ﻿namespace WpfApp.Utils
 {
-    public enum ExercisProgress { Doone, UnDone, InProcess}
+    public enum ExercisProgress { Done, UnDone, InProcess}
     public enum ExerciseType { Time, Count}
     public class Exercise
     {

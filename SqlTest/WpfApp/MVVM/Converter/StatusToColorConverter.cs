@@ -23,7 +23,7 @@ namespace WpfApp.MVVM.Converter
 
                 switch (status)
                 {
-                    case ExercisProgress.Doone:
+                    case ExercisProgress.Done:
                         color = new SolidColorBrush(Colors.Green);
                         break;
 

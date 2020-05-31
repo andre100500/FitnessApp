@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using WpfApp.MVVM.Models;
+using WpfApp.Utils;
 
 namespace WpfApp.MVVM.ViewModels
 {
@@ -42,7 +43,14 @@ namespace WpfApp.MVVM.ViewModels
             SettingsCommand = new SimpleCommand(Settings);
             ExerciseCommand = new SimpleCommand(Exercise);
             AdvancementCommand = new SimpleCommand(Advancement);
-            LocationCommand = new SimpleCommand(Location); 
+            LocationCommand = new SimpleCommand(Location);
+            // Реализовать список прогресса :) Пример(Время и масса , масса и рост)
+            CurentUser.ProgressChart = new List<ProgressChart>()
+            {           
+                new ProgressChart{Name="Body",Mass= 80},
+                new ProgressChart{Name ="Top",Mass = 87}
+            };
+
         }
         private void Settings()
         {

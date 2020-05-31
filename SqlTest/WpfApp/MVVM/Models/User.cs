@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfApp.MVVM.Models;
 using WpfApp.Utils;
 
 namespace SqlTest.Data
@@ -11,7 +12,8 @@ namespace SqlTest.Data
     public enum Sex { Male, Female} 
     public class User
     {
-        public List<Exercise> ExerciseList { get; internal set; }
+        public List<ProgressChart> ProgressChart { get;  set; }
+        public List<Exercise> ExerciseList { get;  set; }
         public int Id { get; set; }
         public string Login { get; set; }
         public string Pass { get; set; }

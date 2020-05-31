@@ -19,7 +19,7 @@ namespace WpfApp.MVVM.ViewModels
     { 
         public User CurentUser { set; get; }
         public string HeaderText { get { return $"#{CurentUser.Id} {CurentUser.Login}"; } }
-        
+
         public string _errorMessage;
         public string ErrorMessage
         {
@@ -27,7 +27,7 @@ namespace WpfApp.MVVM.ViewModels
             set
             {
                 _errorMessage = value;
-                Notify("ErrorMessage"); 
+                Notify("ErrorMessage"); // Для перерисовки интерефейса
             }
         }
 
@@ -38,7 +38,6 @@ namespace WpfApp.MVVM.ViewModels
         public ICommand BackToExercise { get; set; }
         public ICommand SaveToFileProgress { get; set; }
 
-        public string FilePath { get; set; } 
 
         public ProgressViewModel()
         {
@@ -50,24 +49,29 @@ namespace WpfApp.MVVM.ViewModels
             CurentUser.ExerciseList = new List<Exercise>()
             {
                 new Exercise{Name = "Crow ", Description = "Body",Count="Five",CounterType=ExerciseType.Time,CurentProgress=ExercisProgress.InProcess },
-                 new Exercise{Name = "Sex ", Description = "Body",Count="Six",CounterType=ExerciseType.Count,CurentProgress=ExercisProgress.Doone },
+                 new Exercise{Name = "Sex ", Description = "Body",Count="Six",CounterType=ExerciseType.Count,CurentProgress=ExercisProgress.Done},
                   new Exercise{Name = "GG ", Description = "Body",Count="Two",CounterType=ExerciseType.Count,CurentProgress=ExercisProgress.UnDone }
-            };
-
+            }; 
+             
         }
+
         private void OpenFile()
         {
+            
             ErrorMessage = "";
             try
             {
                 OpenFileDialog FileDialog = new OpenFileDialog();
+                FileDialog.Filter = "JSON Documents | *.json";
                 if (FileDialog.ShowDialog().Value)
-                {  
+                {
                     using (var reader = new StreamReader(FileDialog.FileName))
-                    { 
-                        var data =  reader.ReadToEnd();
+                    {
+                        var data = reader.ReadToEnd();
                         CurentUser.ExerciseList = new List<Exercise>();
                         CurentUser.ExerciseList = JsonConvert.DeserializeObject<List<Exercise>>(data);
+                        Notify("CurentUser");
+
                     }
                 }
             }
@@ -82,6 +86,7 @@ namespace WpfApp.MVVM.ViewModels
             try
             { 
                 SaveFileDialog FileDialog = new SaveFileDialog();
+                FileDialog.Filter = "JSON Documents | *.json";
                 if (FileDialog.ShowDialog().Value)
                 {
                     using (var writer = new StreamWriter(FileDialog.FileName))

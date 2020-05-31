@@ -5,11 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp.MVVM.Views"
              xmlns:vm="clr-namespace:WpfApp.MVVM.ViewModels"
+             xmlns:dv="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"  
+             xmlns:dvc="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             xmlns:models="clr-namespace:WpfApp.MVVM.Models"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <vm:HomeViewModel></vm:HomeViewModel>
     </UserControl.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -33,6 +37,14 @@
         <Button Content="Progress"  Grid.Row="5" Grid.Column="2" Command="{Binding AdvancementCommand}"/>
         <Label Content="Welcom to Fitness Application" FontFamily="Edwardian Script ITC" FontSize="48" FontWeight="Bold" Grid.ColumnSpan="4" Grid.RowSpan="2"  />
         <TextBlock Grid.Column="4" TextWrapping="Wrap" Text="{Binding HeaderText}" />
-
+        <dvc:Chart Background="Aqua" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0.5" HorizontalAlignment="Right" Width="418" Grid.RowSpan="2">
+            <dvc:Chart.Series>
+                <dvc:AreaSeries Title="Progress" 
+                       ItemsSource="{Binding CurentUser.ProgressChart}"
+                        IndependentValueBinding="{Binding Path=Name}"
+                        DependentValueBinding="{Binding Path=Mass}">
+                </dvc:AreaSeries>
+            </dvc:Chart.Series>
+        </dvc:Chart>
     </Grid>
 </UserControl>

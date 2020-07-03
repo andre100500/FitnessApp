@@ -15,7 +15,7 @@ namespace WpfApp.MVVM.ViewModels
         public string _errorMessage;
 
         public User CurentUser { get { return SettingsProvider.Instance.CurentUser; }  } 
-        //#12 Login
+        
         public string HeaderText { get { return $"#{CurentUser.Id}  {CurentUser.Login}"; } }
 
         public ICommand SettingsCommand { get; set; }
@@ -44,11 +44,11 @@ namespace WpfApp.MVVM.ViewModels
             ExerciseCommand = new SimpleCommand(Exercise);
             AdvancementCommand = new SimpleCommand(Advancement);
             LocationCommand = new SimpleCommand(Location);
-            // Реализовать список прогресса :) Пример(Время и масса , масса и рост)
+            
             CurentUser.ProgressChart = new List<ProgressChart>()
-            {           
-                new ProgressChart{Name="Body",Mass= 80},
-                new ProgressChart{Name ="Top",Mass = 87}
+            {
+                new ProgressChart{Name="19.06.2020",Mass= 80},
+                new ProgressChart{Name ="22.06.2020",Mass = 87}
             };
 
         }

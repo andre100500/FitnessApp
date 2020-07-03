@@ -42,7 +42,7 @@
             </DataGrid.RowStyle>-->
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name"  Binding="{Binding Path=Name}"/>
-                <DataGridTextColumn Header="Mass" Binding="{Binding Path=Description}"/>
+                <DataGridTextColumn Header="Mass" Binding="{Binding Path=Mass}"/>
                 <DataGridTextColumn Header="Count" Binding="{Binding Path=Count}"/>
                 <DataGridTextColumn Header="CounterType" Binding="{Binding Path=CounterType}"/>
                 <DataGridTextColumn Header="CurentProgress" Binding="{Binding Path=CurentProgress}"/>
@@ -50,5 +50,7 @@
         </DataGrid>
         <Button Content="Loading File" Command="{Binding OpenFileCommand}" HorizontalAlignment="Left" Margin="42,231,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Save File" Command="{Binding SaveToFileProgress}" HorizontalAlignment="Left" Margin="166,231,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Home" Command="{Binding BackToHome}" HorizontalAlignment="Left" Margin="322,231,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Exercise" Command="{Binding BackToExercise}" HorizontalAlignment="Left" Margin="432,231,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </UserControl>

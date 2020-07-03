@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
 using SqlTest.Data;
+using WpfApp.Utils;
 
 namespace WpfApp
 {
@@ -28,7 +29,7 @@ namespace WpfApp
         }
 
         public User CurentUser { get; set; }
-
+         
 
         public static void LoadSettings()
         {

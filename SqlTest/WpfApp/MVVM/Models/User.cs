@@ -13,6 +13,9 @@ namespace SqlTest.Data
     public class User
     {
         public List<ProgressChart> ProgressChart { get;  set; }
+        /// <summary>
+        /// Упражнениея на день
+        /// </summary>
         public List<Exercise> ExerciseList { get;  set; }
         public int Id { get; set; }
         public string Login { get; set; }

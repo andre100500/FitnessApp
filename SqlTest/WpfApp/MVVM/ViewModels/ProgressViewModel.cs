@@ -27,7 +27,7 @@ namespace WpfApp.MVVM.ViewModels
             set
             {
                 _errorMessage = value;
-                Notify("ErrorMessage"); // Для перерисовки интерефейса
+                Notify("ErrorMessage"); 
             }
         }
 
@@ -48,11 +48,11 @@ namespace WpfApp.MVVM.ViewModels
             CurentUser = SettingsProvider.Instance.CurentUser;
             CurentUser.ExerciseList = new List<Exercise>()
             {
-                new Exercise{Name = "Crow ", Description = "Body",Count="Five",CounterType=ExerciseType.Time,CurentProgress=ExercisProgress.InProcess },
-                 new Exercise{Name = "Sex ", Description = "Body",Count="Six",CounterType=ExerciseType.Count,CurentProgress=ExercisProgress.Done},
-                  new Exercise{Name = "GG ", Description = "Body",Count="Two",CounterType=ExerciseType.Count,CurentProgress=ExercisProgress.UnDone }
-            }; 
-             
+                new Exercise{Name = "Crow ", Mass = 50,Count=5,CounterType=ExerciseType.Time,CurentProgress=ExercisProgress.InProcess },
+                 new Exercise{Name = "Jhon", Mass = 25,Count=7,CounterType=ExerciseType.Count,CurentProgress=ExercisProgress.Done},
+                  new Exercise{Name = "Roy", Mass = 30,Count=2,CounterType=ExerciseType.Count,CurentProgress=ExercisProgress.UnDone }
+            };
+            Notify("CurentUser");
         }
 
         private void OpenFile()
@@ -71,7 +71,6 @@ namespace WpfApp.MVVM.ViewModels
                         CurentUser.ExerciseList = new List<Exercise>();
                         CurentUser.ExerciseList = JsonConvert.DeserializeObject<List<Exercise>>(data);
                         Notify("CurentUser");
-
                     }
                 }
             }

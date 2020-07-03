@@ -11,8 +11,8 @@
     <UserControl.DataContext>
         <vm:LocationViewModel/>
     </UserControl.DataContext>
-    <Window>
-        <Grid>
+
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
@@ -23,19 +23,15 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="1" Margin="10,10,10,81">
-            <!--<Grid>
-                <TextBox Background="White" Padding="10 0 25 0"/>
+            <Grid>
                 <materialDesign:PackIcon Kind="MapMarker" VerticalAlignment="Center" Margin="2"/>
-                <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatButton}">
-                    <materialDesign:PackIcon Kind="Search"/>
-                </Button>
-            </Grid>-->
-                <ListView>
-                    <ListViewItem>
+            </Grid>
+            <ListView>
+                <ListViewItem>
                     <Border BorderBrush="LightGray" BorderThickness="0 0 0 1" Width="260">
                         <Grid Height="50">
                             <StackPanel Height="50">
-                                    <TextBlock Text="The Olimpiya"/>
+                                <TextBlock Text="The Olimpiya"/>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="4,6" Foreground="#DDFF6F0B" Margin="1" FontSize="10"/>
                                     <materialDesign:PackIcon Kind="Star" Foreground="#DDFF6F0B" Margin="1" VerticalAlignment="Center" Width="12" Height="12"/>
@@ -46,24 +42,21 @@
                                 </StackPanel>
                                 <TextBlock Text="Open until 09:00 PM" Opacity="0.7"/>
                             </StackPanel>
-                            <Image HorizontalAlignment="Right" Width="50" Height="50"  Stretch="UniformToFill" />
                         </Grid>
                     </Border>
                 </ListViewItem>
             </ListView>
         </StackPanel>
 
-        <Button Grid.Column="1" HorizontalAlignment="Right">
-            <materialDesign:PackIcon Kind="Close"/>
-        </Button>
 
-            <maplocal:Map CredentialsProvider="AttsGkqIHCOIEA11KtQZDphl5bi8lppin64jeg-ZOOhiS4cdHA_EXJwHSbyZi4Xo" Mode="Road" Grid.Column="1" Grid.Row="1" ZoomLevel="16" Center="51.4993423,31.2905982" Margin="0,0,0,81">
-                <Canvas maplocal:MapLayer.Position="51.4993423,31.2905982"
-        maplocal:MapLayer.PositionOrigin="BottomCenter" Width="30" Height="30"
-        >
+
+        <maplocal:Map  
+                CredentialsProvider="WH80vCnJhT66hrLTvbiO~c3xZsPZAc7Fb2XyZDf3-Tg~AvvoEMYcS4HKjQ_DLRxU6ciRQpnI4zhX2SDQwU77ItQtl9Wj5ZW9CWNHnHyxcIjZ" Mode="Road" Grid.Column="1" Grid.Row="1" ZoomLevel="16" Center="51.4993423,31.2905982" Margin="0,0,0,81">
+            <Canvas maplocal:MapLayer.Position="51.4993423,31.2905982"
+                     maplocal:MapLayer.PositionOrigin="BottomCenter" Width="30" Height="30">
                 <materialDesign:PackIcon Kind="MapMarker" Width="30" Height="30" Foreground="#FF3C3C3C"/>
             </Canvas>
         </maplocal:Map>
+        <Button Command="{Binding CloseComand}" Content="Home" Grid.Column="1" HorizontalAlignment="Left" Margin="414,8,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
-    </Window>
 </UserControl>

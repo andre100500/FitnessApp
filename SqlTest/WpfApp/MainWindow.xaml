@@ -7,7 +7,7 @@
         xmlns:Views="clr-namespace:WpfApp.MVVM.Views"
         x:Class="WpfApp.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Fitness" Height="450" Width="800">
     <Grid>
 
 

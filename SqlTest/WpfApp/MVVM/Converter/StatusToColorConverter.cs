@@ -32,7 +32,7 @@ namespace WpfApp.MVVM.Converter
                         break;
 
                     case ExercisProgress.InProcess:
-                        color = new SolidColorBrush(Colors.Yellow);
+                        color = new SolidColorBrush(Colors.Aqua);
                         break;
                     default:
                         color = new SolidColorBrush(Colors.White);

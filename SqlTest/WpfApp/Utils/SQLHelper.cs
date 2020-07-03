@@ -79,7 +79,59 @@ namespace WpfApp
                 throw new Exception($"Error Update User: User ID={user.Id}.");
             }
             connection.Close();
-        }       
+        }
+
+        //public static User ExerciseUser(User user)
+        //{
+        //    string requestExerice = "SELECT* FROM Exercise WHERE UserId = @userid";
+        //    MySqlConnection connection = GetDBConnection();
+        //    connection.Open();
+        //    MySqlCommand command = new MySqlCommand(requestExerice, connection);
+        //    command.Parameters.AddWithValue("@userid", user.ExerciseList.UserId);
+
+        //    MySqlDataReader reader = command.ExecuteReader();
+        //    if(reader.HasRows)
+        //    {
+        //        while(reader.Read())
+        //        {
+        //            user = new User()
+        //            {
+        //                Id = int.Parse(reader.GetValue(0).ToString()),
+        //                UserId = int.Parse(reader.GetValue(1).ToString())
+        //            };
+
+        //        }
+        //    }
+        //    reader.Close();
+        //    connection.Close();
+        //    return user;
+        //}
+        ////TODO Ежедневная добавление массы
+        public static User ProgressChartUser(User user)
+        {
+            string requestProgressChart = "SELECT * FROM Progress WHERE UserId = @UserId";
+            MySqlConnection connection = GetDBConnection();
+            connection.Open();
+            MySqlCommand command = new MySqlCommand(requestProgressChart, connection);
+            command.Parameters.AddWithValue("@UserId", user.Mass);
+
+            MySqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    user = new User()
+                    {
+                        Id = int.Parse(reader.GetValue(0).ToString()),
+                       //ProgressChart = int.Parse(reader.GetValue(1).ToString())
+                    };
+
+                }
+            }
+            reader.Close();
+            connection.Close();
+            return user;
+        }
 
         public static int DeleteUser(User user)
         {

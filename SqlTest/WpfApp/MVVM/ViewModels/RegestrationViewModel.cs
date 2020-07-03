@@ -19,6 +19,7 @@ namespace WpfApp.MVVM.ViewModels
         public String Age { set; get; }
         public String Gender { set; get; } = "Male"; 
         public ICommand RegestrationCommand { get; set; }
+        public ICommand BackCommand{ get; set; }
 
         public string ErrorMessage
         {
@@ -33,7 +34,15 @@ namespace WpfApp.MVVM.ViewModels
         public RegestrationViewModel()
         {
             RegestrationCommand = new SimpleCommand(Regestration);
-            CurentUser = new User(); 
+            CurentUser = new User();
+            CurentUser.ProgressChart = new List<ProgressChart>();
+            CurentUser.ExerciseList = new List<Utils.Exercise>();
+            BackCommand = new SimpleCommand(Back);
+        }
+
+        public void Back()
+        {
+            StartViewModel.Instant.ChangeViewModel((IPageViewModel)new LoginViewModel());
         }
 
         private void Regestration()

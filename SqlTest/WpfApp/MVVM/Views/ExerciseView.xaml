@@ -4,13 +4,32 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp.MVVM.Views"
+             xmlns:vm="clr-namespace:WpfApp.MVVM.ViewModels"
+             xmlns:conv="clr-namespace:WpfApp.MVVM.Converter"
+             xmlns:mod="clr-namespace:WpfApp.MVVM.Models"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:ExerciseViewModel/>
+    </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="299*"/>
             <ColumnDefinition Width="101*"/>
         </Grid.ColumnDefinitions>
+        <StackPanel Margin="10" RenderTransformOrigin="1.12,0.462" Grid.Column="1">
+            <ItemsControl ItemsSource="{Binding CurentUser.ExerciseList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=CurentProgress}" Foreground="{Binding CurentProgress, Converter={StaticResource colorConverterKey}}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+        <Button Command="{Binding StartOrPauseCommand}" Content="Start" HorizontalAlignment="Left" Margin="262,187,0,0" VerticalAlignment="Top" Width="74"/>
+        <TextBlock HorizontalAlignment="Left" Margin="278,92,0,0" TextWrapping="Wrap" Text="{Binding Timers }"  VerticalAlignment="Top"/>
+        <Button Command="{Binding HomeCommand}" Content="Home" HorizontalAlignment="Left" Margin="123,342,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button Command="{Binding ProgressCommand}" Content="Progress" HorizontalAlignment="Left" Margin="288,342,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </UserControl>

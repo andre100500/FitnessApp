@@ -109,11 +109,12 @@ namespace WpfApp
         ////TODO Ежедневная добавление массы
         public static User ProgressChartUser(User user)
         {
-            string requestProgressChart = "SELECT * FROM Progress WHERE UserId = @UserId";
+            string requestProgressChart = "SELECT * FROM Progress WHERE UserId = @UserId Mass=@Mass";
             MySqlConnection connection = GetDBConnection();
             connection.Open();
             MySqlCommand command = new MySqlCommand(requestProgressChart, connection);
-            command.Parameters.AddWithValue("@UserId", user.Mass);
+            command.Parameters.AddWithValue("@UserId", user.Id);
+            command.Parameters.AddWithValue("@Mass",user.Mass);
 
             MySqlDataReader reader = command.ExecuteReader();
             if (reader.HasRows)

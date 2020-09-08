@@ -8,7 +8,7 @@ namespace WpfApp.MVVM.Models
 {
     public class ProgressChart
     {
-        public string Name { get; set; }
+        public int Id{ get; set; }
         public double Mass { get; set; }
     }
 }

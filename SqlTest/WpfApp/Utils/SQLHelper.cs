@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using SqlTest.Data;
+using WpfApp.MVVM.Models;
 
 namespace WpfApp
 {
@@ -109,7 +110,7 @@ namespace WpfApp
         ////TODO Ежедневная добавление массы
         public static User ProgressChartUser(User user)
         {
-            string requestProgressChart = "SELECT * FROM Progress WHERE UserId = @UserId Mass=@Mass";
+            string requestProgressChart = "SELECT * FROM Progresschart ";
             MySqlConnection connection = GetDBConnection();
             connection.Open();
             MySqlCommand command = new MySqlCommand(requestProgressChart, connection);
@@ -124,6 +125,7 @@ namespace WpfApp
                     user = new User()
                     {
                         Id = int.Parse(reader.GetValue(0).ToString()),
+                        Mass = double.Parse(reader.GetValue(1).ToString())
                        //ProgressChart = int.Parse(reader.GetValue(1).ToString())
                     };
 

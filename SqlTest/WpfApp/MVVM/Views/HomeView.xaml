@@ -46,5 +46,6 @@
                 </dvc:AreaSeries>
             </dvc:Chart.Series>
         </dvc:Chart>
+        <Button Content="Progress" Command="{Binding ProgressCommand}" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Top" Width="75" Margin="8,20.5,0,0"/>
     </Grid>
 </UserControl>

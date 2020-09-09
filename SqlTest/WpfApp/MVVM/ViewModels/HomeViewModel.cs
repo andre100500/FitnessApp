@@ -15,7 +15,6 @@ namespace WpfApp.MVVM.ViewModels
         public string _errorMessage;
 
         public User CurentUser { get { return SettingsProvider.Instance.CurentUser; }  } 
-        public ProgressChart progressChart { get; set; }
 
 
         public string HeaderText { get { return $"#{CurentUser.Id}  {CurentUser.Login}"; } }
@@ -47,11 +46,11 @@ namespace WpfApp.MVVM.ViewModels
             ExerciseCommand = new SimpleCommand(Exercise);
             AdvancementCommand = new SimpleCommand(Advancement);
             LocationCommand = new SimpleCommand(Location);
-            //List<ProgressChart> phChart = new List<ProgressChart>();
-            //CurentUser.ProgressChart = new List<ProgressChart>(phChart);
-            ProgressCommand = new SimpleCommand(ProgressUser);
 
-            Notify("ProgressChart");
+            //CurentUser.ProgressChart=SQLHelper.ProgressChartUser(CurentUser);
+
+
+            Notify("CurentUser");
             //CurentUser.ProgressChart = new List<ProgressChart>()
             //{
             //    new ProgressChart{Name="19.06.2020",Mass= 80},
@@ -59,20 +58,7 @@ namespace WpfApp.MVVM.ViewModels
             //};
 
         }
-        private void ProgressUser()
-        {
-            try
-            {
-                ErrorMessage = " ";
-
-                SQLHelper.ProgressChartUser(CurentUser);
-
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = ex.Message;
-            }
-        }
+       
         private void Settings()
         {
             StartViewModel.Instant.ChangeViewModel((IPageViewModel)new SettingsViewModel());

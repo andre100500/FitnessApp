@@ -108,7 +108,7 @@ namespace WpfApp
         //    return user;
         //}
         ////TODO Ежедневная добавление массы
-        public static User ProgressChartUser(User user)
+        public static void ProgressChartUser(User user)
         {
             string requestProgressChart = "SELECT * FROM Progresschart ";
             MySqlConnection connection = GetDBConnection();
@@ -117,23 +117,19 @@ namespace WpfApp
             command.Parameters.AddWithValue("@UserId", user.Id);
             command.Parameters.AddWithValue("@Mass",user.Mass);
 
+            user.ProgressChart = new List<ProgressChart>();
             MySqlDataReader reader = command.ExecuteReader();
             if (reader.HasRows)
             {
                 while (reader.Read())
                 {
-                    user = new User()
-                    {
-                        Id = int.Parse(reader.GetValue(0).ToString()),
-                        Mass = double.Parse(reader.GetValue(1).ToString())
-                       //ProgressChart = int.Parse(reader.GetValue(1).ToString())
-                    };
+                    //ProgressChart.Add(int.Parse(reader.GetValue(1).ToString())); 
 
                 }
             }
             reader.Close();
             connection.Close();
-            return user;
+
         }
 
         public static int DeleteUser(User user)
